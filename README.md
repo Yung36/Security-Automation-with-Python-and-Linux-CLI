@@ -7,7 +7,6 @@
 Description: A Python-based log parser that automates SOC triage by filtering failed authentication events in Linux.
 Descripción: Un analizador de logs en Python que automatiza el triaje del SOC filtrando eventos de autenticación fallida en Linux.
 
-================================================================================
 🇪🇸 Versión en Español
 ================================================================================
 
@@ -76,7 +75,6 @@ Salida final obtenida en la consola de Kali Linux, demostrando el funcionamiento
 
 Description: A Python-based log parser that automates SOC triage by filtering failed authentication events in Linux.
 
-================================================================================
 🇺🇸 English Version
 ================================================================================
 
