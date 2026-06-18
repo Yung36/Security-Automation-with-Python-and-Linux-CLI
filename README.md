@@ -1,7 +1,7 @@
 
 * 🇪🇸 [Versión en Español](#-versión-en-español)
 * 🇺🇸 [English Version](#-english-version)
-================================================================================
+
 # Security Automation with Python and Linux CLI
 
 Description: A Python-based log parser that automates SOC triage by filtering failed authentication events in Linux.
