@@ -1,6 +1,9 @@
-Idiomas/Languages: Español | English
+Security Automation with Python and Linux CLI
+Description: A Python-based log parser that automates SOC triage by filtering failed authentication events in Linux.
+
+Descripción: Un analizador de logs en Python que automatiza el triaje del SOC filtrando eventos de autenticación fallida en Linux.
+
 🇪🇸 Versión en Español
-Laboratorio: Automatización de Seguridad con Python y Linux CLI
 1. Información General
 Fecha: 2026-06-17
 
@@ -32,71 +35,36 @@ Herramientas: Python 3, Linux CLI, Editor Nano.
 
 6. Resultados y Evidencias
 6.1 Fase de Preparación
-Verificación del direccionamiento IP real en la interfaz de red activa. [Configuración de Red ip a]
+Verificación del direccionamiento IP real en la interfaz de red activa mediante la CLI de Linux:
+
+Bash
+ip a
+Resultado en terminal: Interfaz eth0 operando bajo la dirección IP 192.168.1.100/24.
 
 6.2 Fase de Ejecución (Simulación)
-Generación del archivo de registros simulados reflejando accesos fallidos y exitosos. [Generación de Logs con Echo]
+Generación del archivo de registros simulados reflejando accesos fallidos y exitosos:
 
+Bash
+echo -e "IP: 192.168.1.50 - FAILED\nIP: 192.168.1.100 - SUCCESS" > falsos_logs.txt
 6.3 Fase de Análisis (Detección)
-Ejecución del script lector.py mostrando en la terminal la activación del filtro del SOC. [Alerta de Script en Python]
+Creación y ejecución del script de automatización lector.py:
 
+Python
+with open("falsos_logs.txt", "r") as archivo:
+    for linea in archivo:
+        if "FAILED" in linea:
+            print(f"[ALERTA SOC] Intento sospechoso detectado: {linea.strip()}")
+Salida final obtenida en la consola de Kali Linux, demostrando el funcionamiento del filtro:
+
+Plaintext
+└─$ python3 lector.py
+[ALERTA SOC] Intento sospechoso detectado: IP: 192.168.1.50 - FAILED
 7. Conclusiones y Remediación
 Conclusiones: La revisión manual de registros consume tiempo crítico. La integración de scripts básicos en Python permite optimizar el triaje en el SOC aislando alertas de forma instantánea.
 
 Remediación (En Progreso): El script actual lee y detecta los fallos. La fase de remediación automatizada requerirá extraer la IP del atacante mediante código para inyectarla directamente en las reglas del firewall de Linux (iptables).
 
 8. Referencias
-Python Software Foundation. (2026). Input and Output: Reading and Writing Files. https://docs.python.org/3/tutorial/inputoutput.html
-
-Linux Documentation Project. (2026). I/O Redirection Fundamentals. https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html
-
-🇺🇸 English Version
-Laboratory: Security Automation with Python and Linux CLI
-1. General Information
-Date: 2026-06-17
-
-Author: Yung Lee
-
-Objective: Develop an automated Python script to parse system logs and detect unauthorized access attempts.
-
-2. Ethical and Legal Framework
-This laboratory was performed in an isolated virtualization environment. All scripts and logs are execution-controlled and simulated against proprietary resources, complying with cybersecurity ethics protocols and supervised practical work guidelines.
-
-3. Laboratory Objective
-Create a Python scripting structure to interact with Linux text-based logs.
-
-Implement conditional logic (if statements) to filter out background noise and isolate security events (FAILED attempts).
-
-4. Topology and Environment
-OS: Kali Purple (Kali Linux).
-
-Target IP Managed: 192.168.1.100 (Local Interface eth0).
-
-Tools: Python 3, Linux CLI, Nano Editor.
-
-5. Methodology
-5.1 Preparation Phase: Verification of the local IP address using ip a to align network segments and preparation of structured simulation data.
-
-5.2 Execution Phase (Simulation): Creation of a simulated log flow via terminal redirection (``) and secure file handling in Python using with open.
-
-5.3 Analysis Phase (Detection): Implementation of a logical string filter to inspect each line and discriminate successful events from active threats.
-
-6. Results and Evidence
-6.1 Preparation Phase
-Checking active network configuration on the system to align logs. [Network Configuration ip a]
-
-6.2 Execution Phase (Simulation)
-Generating the mock log data file reflecting failed and successful access. [Log Generation via Echo]
-
-6.3 Analysis Phase (Detection)
-Running the lector.py script showcasing the activation of the automated SOC filter engine. [Python Script Alert]
-
-7. General Conclusions and Remediation
-Conclusions: Manual log review consumes critical triage time. Implementing basic Python scripting optimizes SOC analysis by instantly isolating active alerts.
-
-Remediation (In Progress): The current script reads and detects failures. The automated remediation phase will require extracting the attacker's IP via code to inject it directly into the Linux firewall (iptables) rules.
-
-8. References
 Python Software Foundation. (2026). Input and Output: Reading and Writing Files. https://docs.python.org/3/tutorial/inputoutput.html
 
 Linux Documentation Project. (2026). I/O Redirection Fundamentals. https://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html
